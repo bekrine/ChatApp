@@ -27,7 +27,7 @@ const Home = () => {
       <input
             className=' shadow-xl bg-transparent w-full'
              type='text' 
-             placholder='Room name' 
+             placeholder='Room name' 
              ref={nameRef} />
                <button 
       className='bg-indigo-500	'
