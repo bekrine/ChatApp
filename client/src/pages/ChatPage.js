@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-// import  {io}  from 'socket.io-client'
+ import  {io}  from 'socket.io-client'
 
-// const socket =io.connect('http://localhost:5000')
+ const socket =io.connect('http://localhost:5000')
 
 
 const ChatPage = () => {
@@ -10,20 +10,20 @@ const ChatPage = () => {
     const refMessage=useRef('')
 
     useEffect(()=>{
-        // socket.on('chat_message',(msg)=>{
-        //     setMessageReseve(Prevmsg=>[...Prevmsg,msg])
-        // })
+         socket.on('chat_message',(msg)=>{
+             setMessageReseve(Prevmsg=>[...Prevmsg,msg])
+             })
 
     },[messageReseve])
 
     const sendMessage=()=>{
-        setMessage(prevMess=>[...prevMess,refMessage.current.value])
-        refMessage.current.value=''
+        console.log(refMessage.current.value)
+        setMessage(prevMesg=>[...prevMesg,refMessage.current.value])
+         refMessage.current.value=''
         console.log(message)
-        // socket.emit('chat_message',message)
+        socket.emit('chat_message',message)
         
     }
-    console.log(message)
     let myMessage
     message.length ?  
                     myMessage=message.map((msg,index)=><div key={index} className='flex justify-end bg-slate-400 m-2'><span className=''>{msg}</span></div>):

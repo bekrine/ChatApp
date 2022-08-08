@@ -1,10 +1,10 @@
 import React, { useState,useRef } from 'react'
 import {v4 as uuId} from 'uuid'
 import Rooms from '../components/Rooms'
-// import { io } from 'socket.io-client'
+ import { io } from 'socket.io-client'
 
 const Home = () => {
-  // const socket=io()
+  const socket=io()
   const nameRef=useRef()
   const [roomName,setRoomName]=useState([])
 
@@ -13,7 +13,7 @@ const Home = () => {
       return [...prevNames,{id:uuId(),roomName:nameRef.current.value}]
     })
     nameRef.current.value=''
-    // socket.emit('create',roomName)
+   socket.emit('create',roomName)
   }
   const deleteRoom=(id)=>{
     const newRooms=roomName.filter(room=>room.id !== id)

@@ -17,7 +17,7 @@ app.get('/',(req,res)=>{
 
 io.on("connection",(socket)=>{
     console.log('user conected');
-    socket.on('create',(room)=>{
+    socket.on('join_room',(room)=>{
         console.log(`you joind room ${room}`)
         socket.join(room)
     })
